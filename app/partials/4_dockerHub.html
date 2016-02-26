@@ -27,10 +27,19 @@
       </aside>
    </section>
    <section>
-      <h3></h3>
+      <h3>Pull Command</h3>
+
+      <p>Pull an image or a repository from the registry</p>
+
+      <pre><code>$ docker pull [OPTIONS] NAME[:TAG]</code></pre>
+      <pre><code>$ docker pull [OPTIONS] [REGISTRY_HOST[:REGISTRY_PORT]/]NAME[:TAG]</code></pre>
 
       <p>
+         Example: Ubuntu<br>
+         Pull the version 14.04 of ubuntu
       </p>
+
+      <pre><code>$ docker pull ubuntu:14.04</code></pre>
 
       <aside class="notes">
          <ul>
@@ -39,10 +48,23 @@
       </aside>
    </section>
    <section>
-      <h3></h3>
+      <h3>IMAGES Command</h3>
 
       <p>
+         List images
       </p>
+
+      <pre><code>$ docker images [OPTIONS] [REPOSITORY[:TAG]]</code></pre>
+
+      <p>
+         Example
+      </p>
+
+      <pre><code data-trim>$ docker images</code><code style="font-size: small" data-trim>REPOSITORY                       TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+alpine                           3.3                 3571dd565f47        8 days ago          4.794 MB
+busybox                          latest              65e4158d9625        9 days ago          1.114 MB
+ubuntu                           14.04               6cc0fc2a5ee3        5 weeks ago         187.9 MB
+mongo                            latest              a74137af4532        6 weeks ago         317.4 MB</code></pre>
 
       <aside class="notes">
          <ul>
@@ -51,10 +73,129 @@
       </aside>
    </section>
    <section>
-      <h3></h3>
+      <h3>Part 2 Exercice 1</h3>
+
+      <ul>
+         <li>Pull the version 3.3 of alpine</li>
+         <li>
+            Run an interactive shell with alpine <br>
+            Tips: use <code>--name</code> to retreive your container later
+         </li>
+         <li>
+            Setup node.js with the command below:
+            <pre><code>$ apk add --update nodejs</code></pre>
+         </li>
+      </ul>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Solution</h3>
+
+      <pre><code>$ docker pull alpine:3.3</code></pre>
+      <pre><code>$ docker run -it --name alpine-node alpine:3.3</code><code>/ # </code></pre>
+      <pre><code>/ # apk add --update nodejs</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>PS Command</h3>
 
       <p>
+         List containers <br><br>
+         <small><code>-a, --all </code>  Show all containers (default shows just running)</small>
       </p>
+
+      <pre><code>$ docker ps [OPTIONS]</code></pre>
+
+
+      <p>
+         Example
+      </p>
+
+      <pre><code data-trim>$ docker ps -a</code><code style="font-size: small" data-trim>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+33077589655c        alpine              "/bin/sh"           7 minutes ago       Exited (0) 28 seconds ago                       alpine-node</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>START command</h3>
+
+      <p>
+         Start one or more containers
+      </p>
+
+      <pre><code>$ docker start [OPTIONS] CONTAINER [CONTAINER...]</code></pre>
+
+      <p>
+         Options:
+      </p>
+
+      <pre><code>-a, --attach        Attach STDOUT/STDERR and forward signals
+-i, --interactive   Attach container's STDIN</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>COMMIT Command</h3>
+
+      <p>
+         Commit a container allow you to turn it into a new image.
+      </p>
+
+      <pre><code>$ docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]</code></pre>
+
+      <p>
+         Options:
+      </p>
+
+      <pre><code>-a, --author=""     Author (e.g., "AshDev <ashdevfr@gmail.com>")
+-c, --change=[]     Apply specified Dockerfile instructions while committing the image
+--help              Print usage
+-m, --message=""    Commit message</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Part 2 Exercice 2</h3>
+
+      <ul>
+         <li>Commit the container previously edited to create an alpine-node image</li>
+      </ul>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Solution</h3>
+
+      <pre><code>$ docker commit -m 'Add nodejs' alpine-node $USER/alpine-node</code></pre>
+
+      <pre><code>$ docker images</code><code>REPOSITORY                       TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+sylvaincau/alpine-node           latest              9852dab7951d        6 seconds ago       24.54 MB</code></pre>
 
       <aside class="notes">
          <ul>
