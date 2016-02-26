@@ -1,0 +1,109 @@
+<section class="partial">
+   <section>
+      <h2>Runnig a container</h2>
+
+      <p>
+      </p>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>RUN Command</h3>
+
+      <pre><code>$ docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]</code></pre>
+
+      <h4>Some options:</h4>
+
+      <ul>
+         <li>Detached (-d)</li>
+         <li>Foreground (-a -t -i)</li>
+         <li>Name (--name)</li>
+         <li>Ports (-p)</li>
+         <li>Volumes (-v)</li>
+      </ul>
+
+      <aside class="notes">
+         <ul>
+            <li>Detached vs foreground: When starting a Docker container, you must first decide if you want to run the
+               container in the background in a “detached” mode or in the default foreground mode
+            </li>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>RUN Command</h3>
+
+      <p>
+         Run a 'Hello World'
+      </p>
+
+      <pre><code>$ docker run busybox /bin/echo 'Hello world'
+Hello world</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Part 1 Exercise 1</h3>
+
+      <ul>
+         <li>Run an 'Hello world!'</li>
+         <li>Use the 'uname -a' command to retrieve the container informations</li>
+      </ul>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>RUN Command</h3>
+      <h4>Foreground Option</h4>
+
+      <pre><code>-a=[] : Attach to `STDIN`, `STDOUT` and/or `STDERR`
+-t : Allocate a pseudo-tty
+-i : Keep STDIN open even if not attached</code></pre>
+
+      <ul>
+         <li>Without <code>-a</code>, Docker will attach all standard streams</li>
+         <li>For interactive processes, you must use <code>-i -t</code> (or <code>-it</code>) together.</li>
+         <li>
+            Specifying -t is forbidden when the client standard output is redirected or piped:
+            <pre><code>$ echo / | docker run -i busybox ls</code></pre>
+         </li>
+      </ul>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Part 1 Exercice 2</h3>
+
+      <ul>
+         <li>
+            Using Bash (<code>/bin/sh</code>) in interactive mode
+         </li>
+         <li>
+            Run a 'Hello world' when in interactive mode
+         </li>
+      </ul>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+</section>

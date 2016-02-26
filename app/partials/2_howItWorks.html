@@ -1,0 +1,55 @@
+<section class="partial">
+   <section>
+      <h2>How it works?</h2>
+
+      <p class="fragment" data-fragment-index="1">Based on LXC technology</p>
+
+      <p class="fragment" data-fragment-index="2">High-level API</p>
+
+      <aside class="notes">
+         <ul>
+            <li>LXC (Linux Containers) is an operating-system-level virtualization environment for running multiple isolated Linux systems (containers) on a single Linux control host.</li>
+            <li>système de virtualisation</li>
+            <li>utilise l'isolation comme méthode de cloisonnement au niveau du système d'exploitation</li>
+            <li>faire fonctionner des environnements Linux isolés les uns des autres dans des conteneurs
+               partageant le même noyau
+            </li>
+            <li>The docker API uses libcontainer (replacement to LXC), cgroup, namespaces</li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>How is this different from virtual machines?</h3>
+
+      <div class="fragment" data-fragment-index="1">
+
+         <div style="display: inline-block; width: 40%;">
+            <img src="/img/what-is-vm-diagram.png" style="width: 90%;"/>
+            Virtual Machines
+         </div>
+         <div style="display: inline-block; width: 40%;">
+            <img src="/img/what-is-docker-diagram.png" style="width: 90%;"/>
+            Containers
+         </div>
+      </div>
+   </section>
+   <section>
+      <h3>Containers construction</h3>
+
+      <p class="fragment" data-fragment-index="1">Use the COW strategy</p>
+      <p class="fragment" data-fragment-index="2"><img src="/img/whale_cow.png" style="width: 50%;"/></p>
+   </section>
+   <section>
+      <h3>Containers construction</h3>
+
+      <p>How it really works ?</p>
+      <p class="fragment" data-fragment-index="1"><img src="/img/what_is_layered_filesystems_sm.png" style="width: 50%;"/></p>
+      <aside class="notes">
+         <ul>
+            <li>copy-on-write </li>
+            <li>Les images s'empilent</li>
+            <li>Avec la couche cow cela devient un container</li>
+         </ul>
+      </aside>
+   </section>
+</section>

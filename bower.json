@@ -1,0 +1,9 @@
+{
+  "name": "Hands-on-Docker",
+  "version": "0.0.1",
+  "dependencies": {
+    "reveal.js": "~3.2.0",
+    "webcomponentsjs": "~0.7.21"
+  },
+  "devDependencies": {}
+}
