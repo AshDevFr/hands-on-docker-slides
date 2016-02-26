@@ -66,6 +66,19 @@ Hello world</code></pre>
       </aside>
    </section>
    <section>
+      <h3>Solution</h3>
+
+      <pre><code>$ docker run busybox /bin/echo 'Hello world'</code><code>Hello world</code></pre>
+
+      <pre><code>$ docker run busybox /bin/uname -a</code><code>Linux b63e982a8593 4.1.13-boot2docker #1 SMP Fri Nov 20 19:05:50 UTC 2015 x86_64 GNU/Linux</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
       <h3>RUN Command</h3>
       <h4>Foreground Option</h4>
 
@@ -99,6 +112,18 @@ Hello world</code></pre>
             Run a 'Hello world' when in interactive mode
          </li>
       </ul>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Solution</h3>
+
+      <pre><code>$ docker run -it busybox /bash/sh</code><code>/ #</code></pre>
+      <pre><code>/ # echo 'Hello world'</code><code>Hello world</code></pre>
 
       <aside class="notes">
          <ul>
