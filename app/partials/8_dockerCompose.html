@@ -12,10 +12,108 @@
       </aside>
    </section>
    <section>
-      <h3></h3>
+      <h3>docker-compose</h3>
 
-      <p>
-      </p>
+      <pre><code>$ docker-compose [-f=&lt;arg>...] [options] [COMMAND] [ARGS...]</code></pre>
+
+      <p>Some options:</p>
+
+      <pre><code style="font-size: small">-f, --file FILE           Specify an alternate compose file (default: docker-compose.yml)
+-p, --project-name NAME   Specify an alternate project name (default: directory name)</code></pre>
+
+      <p>Some commands:</p>
+
+      <pre><code style="font-size: small">build     Build or rebuild services
+down      Stop and remove containers, networks, images, and volumes
+ps        List containers
+up        Create and start containers</code></pre>
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>docker-compose.yml</h3>
+
+      <p>Using an existing image</p>
+
+      <pre><code style="font-size: small">webapp:
+   image: examples/web
+   ports:
+   - "8000:8000"
+   volumes:
+   - "/data"
+   links:
+   - myDb:db</code></pre>
+
+      <p>Buiding the Dockerfile</p>
+
+      <pre><code style="font-size: small">webapp:
+   build: .
+   environment:
+   - DEBUG=1</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Example</h3>
+
+      <pre><code data-trim>web:
+   build: .
+   command: gulp serve
+   volumes:
+   - app/:/home/workspace/app
+   links:
+   - db
+   ports:
+   - "9000:9000"
+   environment:
+   NODE_ENV: development
+   PORT: 9000
+db:
+   image: mongo:latest
+   ports:
+   - "27017:27017"</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Part 6 Exercise 1</h3>
+
+      <ul>
+         <li>Use compose to automatize build & run</li>
+      </ul>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Solution</h3>
+
+      <pre><code>web:
+   build: .
+   volumes:
+   - ./src/:/home/workspace/src
+   ports:
+   - "9000:9000"
+   links:
+   - db
+db:
+   image: mongo:latest
+   ports:
+   - "27017:27017"</code></pre>
 
       <aside class="notes">
          <ul>
