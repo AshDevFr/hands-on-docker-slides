@@ -12,10 +12,201 @@
       </aside>
    </section>
    <section>
-      <h3></h3>
+      <h3>Format</h3>
+
+      <pre><code class="nginx"># Comment
+INSTRUCTION arguments</code></pre>
+
+      <pre><code class="nginx"># Comment
+RUN echo 'we are running some # of cool things'</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Instructions</h3>
+
+      <pre><code class="dockerfile">FROM &lt;image>:&lt;tag>
+MAINTAINER &lt;name>
+LABEL &lt;key>=&lt;value> &lt;key>=&lt;value> &lt;key>=&lt;value> ...
+ENV &lt;key> &lt;value>
+ENV &lt;key>=&lt;value>
+WORKDIR /path/to/workdir
+ADD &lt;src>... &lt;dest> # ADD allows &lt;src> to be an URL
+                    # Can extract archives
+COPY &lt;src>... &lt;dest>
+EXPOSE &lt;port>
+VOLUME ["/data"]
+ENTRYPOINT ["executable", "param1", "param2"] # Default /bin/sh -c
+CMD ["executable","param1","param2"]</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h2>Example</h2>
+
+      <pre><code data-trim>FROM ashdev/docker-nodejs
+MAINTAINER AshDev &lt;ashdevfr@gmail.com&gt;
+
+ENV workdir_path /home/workspace
+WORKDIR ${workdir_path}
+
+RUN npm install -g gulp
+
+COPY src/ ${workdir_path}
+
+RUN npm install
+
+EXPOSE 9000
+VOLUME ${workdir_path}
+CMD ["npm", "start"]</code></pre>
+   </section>
+   <section>
+      <h3>Part 3 Exercise 1</h3>
+
+      <ul>
+         <li>
+            Create a dockerfile based on alpine 3.3
+         </li>
+         <li>
+            Add the nodejs package (use the <code>apk</code> command)
+         </li>
+      </ul>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Solution</h3>
+
+      <pre><code>FROM alpine:3.3
+MAINTAINER AshDev &lt;ashdevfr@gmail.com>
+LABEL description="This is a nodejs image based on alpine 3.3"
+
+RUN apk add --update nodejs</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>BUILD Command</h3>
+
+      <p>Build a new image from the source code at PATH</p>
+
+      <pre><code>$ docker build [OPTIONS] PATH | URL | -</code></pre>
+
+      <p>Options:</p>
+
+      <pre><code>-f, --file=""   Name of the Dockerfile (Default is 'PATH/Dockerfile')
+--force-rm      Always remove intermediate containers
+--no-cache      Do not use cache when building the image
+--pull          Always attempt to pull a newer version of the image
+-q, --quiet     Suppress the build output and print image ID on success
+--rm=true       Remove intermediate containers after a successful build
+-t, --tag=[]    Name and optionally a tag in the 'name:tag' format</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Example</h3>
+
+      <p>Create a node image based on debian</p>
+
+      <pre><code style="font-size: small" data-trim># Dockerfile
+FROM debian:wheezy
+MAINTAINER AshDev &lt;ashdevfr@gmail.com>
+
+RUN apt-get update -y && apt-get install --no-install-recommends -y -q \
+         curl \
+         python \
+         build-essential \
+         git \
+         ca-certificates
+RUN mkdir /nodejs && \
+         curl https://nodejs.org/dist/v5.5.0/node-v5.5.0-linux-x64.tar.gz | tar xvzf - -C /nodejs --strip-components=1
+
+ENV PATH $PATH:/nodejs/bin</code></pre>
+
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Example</h3>
+
+      <p>build it</p>
+
+      <pre><code>$ docker build --tag="$USER/docker-nodejs" .</code><code style="font-size: small" data-trim>Sending build context to Docker daemon   129 kB
+Step 1 : FROM debian:wheezy
+---> 5e2a9df259d2
+Step 2 : MAINTAINER AshDev &lt;ashdevfr@gmail.com>
+---> Running in 8fd3feab8a89
+---> a1b751670698
+Removing intermediate container 8fd3feab8a89
+Step 3 : RUN apt-get update -y && apt-get install --no-install-recommends -y -q curl python build-essential git ca-certificates
+---> Running in 4ef1a0f12c2d
+...</code></pre>
+
+      <pre><code>$ docker images</code><code style="font-size: small" data-trim>REPOSITORY                       TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+sylvaincau/docker-nodejs         latest              9a76ebbac106        6 seconds ago       304.7 MB</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Part 3 Exercise 2</h3>
+
+      <ul>
+         <li>Build the Dockerfile and name it alpine-nodejs</li>
+         <li>Run the image alpine-nodejs and try <code>node -v</code></li>
+      </ul>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Solution</h3>
 
       <p>
+         Build the Dockerfile
       </p>
+
+      <pre><code>$ docker build --tag="$USER/alpine-nodejs" .</code></pre>
+
+      <p>
+         Run it
+      </p>
+
+      <pre><code>$ docker run -it $USER/alpine-nodejs /bin/sh
+/ # node -v
+v4.3.0
+/ #</code></pre>
 
       <aside class="notes">
          <ul>
