@@ -12,10 +12,114 @@
       </aside>
    </section>
    <section>
-      <h3></h3>
+      <h3>Volumes</h3>
 
       <p>
+         To mount volumes, you can:
       </p>
+
+      <ul>
+         <li>
+            Use the <code>-v</code> option of the RUN command to mount a local volume
+            <pre><code>$ docker run -v /Users/&lt;path>:/&lt;container path> busybox /bin/sh </code></pre>
+         </li>
+         <li>
+            Use the <code>--volumes-from</code> option of the RUN command to mount all the defined volumes from the referenced containers
+            <pre><code>$ docker run --volumes-from &lt;some container> busybox /bin/sh </code></pre>
+         </li>
+      </ul>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Part 4 Exercise 1</h3>
+
+      <ul>
+         <li>Mount the Exercice1 folder in an alpine-nodejs container</li>
+         <li>With the <code>ls</code> command, list the files in the mounted folder</li>
+      </ul>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Solution</h3>
+
+      <pre><code>$ docker run -it -v /&lt;path>/Exercise1:/tmp/Exercise1 \
+         &lt;user>/alpine-nodejs /bin/sh</code><code>/ #</code></pre>
+      <pre><code>/ # ls /tmp/Exercise1</code><code>README.md</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Attach a port</h3>
+
+      <p>Bind port 8080 of the container to port 80 on 127.0.0.1 of the host machine</p>
+
+      <pre><code>$ docker run -p 127.0.0.1:80:8080 ubuntu bash</code></pre>
+
+      <p>Bind port 8080 of the container to port 8080 of the host machine</p>
+
+      <pre><code>$ docker run -p 8080 ubuntu bash</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Part 4 Exercise 2</h3>
+
+      <ul>
+         <li>
+            In the Exercise2 folder, create a Dockerfile file based on your alpine-nodejs image
+         </li>
+         <li>
+            Expose the server port (9000)
+         </li>
+         <li>
+            Add a command (<code>npm start</code>)
+         </li>
+         <li>
+            Build and run the new image
+         </li>
+      </ul>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Solution</h3>
+
+      <pre><code># Dockerfile
+FROM &lt;user>/alpine-nodejs
+
+ENV workdir_path /home/workspace
+WORKDIR ${workdir_path}
+
+COPY package.json ${workdir_path}/
+
+EXPOSE 9000
+VOLUME ${workdir_path}
+
+CMD ["npm", "start"]</code></pre>
+
+      <pre><code>$ docker run -it -v $(pwd)/src:/home/workspace/src/ -p 9000 exercise2</code></pre>
 
       <aside class="notes">
          <ul>
