@@ -12,10 +12,79 @@
       </aside>
    </section>
    <section>
-      <h3></h3>
+      <h3>Communication across links</h3>
 
       <p>
+         Links allow containers to discover each other and securely transfer information about one container to another container.
       </p>
+
+      <pre><code>$ docker run --link &lt;name or id>:alias &lt;image></code></pre>
+
+      <p>
+         Docker will defines a set of environment variables for each port exposed by the source container. <br>
+         Each variable has a unique prefix in the form:
+
+      <pre><code>&lt;name>_PORT_&lt;port>_&lt;protocol></code></pre>
+      </p>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Setup a link</h3>
+
+      <p>
+         First image, a database: MongoDB
+      </p>
+
+      <pre><code>$ docker run --name myDb mongo</code></pre>
+
+      <p>
+         Second image, your application
+      </p>
+
+      <pre><code>$ docker run --link myDb:db node</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Part 5 Exercise 1</h3>
+
+      <ul>
+         <li>Run a mongoDB image</li>
+         <li>Build the Dockerfile in the Exercise1 folder</li>
+         <li>Run your application</li>
+      </ul>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>Solution</h3>
+
+      <p>
+         Mongo db
+      </p>
+
+      <pre><code>$ docker run --name myDb mongo</code></pre>
+
+      <p>
+         Build the project & run it
+      </p>
+
+      <pre><code>$ docker build -t exercise1 .</code></pre>
+      <pre><code>$ docker run -it --link myDb:db -v $(pwd)/src:/home/workspace/src/ \
+         -p 9000 exercise1</code></pre>
 
       <aside class="notes">
          <ul>
