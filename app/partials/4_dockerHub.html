@@ -107,52 +107,6 @@ mongo                            latest              a74137af4532        6 weeks
       </aside>
    </section>
    <section>
-      <h3>PS Command</h3>
-
-      <p>
-         List containers <br><br>
-         <small><code>-a, --all </code>  Show all containers (default shows just running)</small>
-      </p>
-
-      <pre><code>$ docker ps [OPTIONS]</code></pre>
-
-
-      <p>
-         Example
-      </p>
-
-      <pre><code data-trim>$ docker ps -a</code><code style="font-size: small" data-trim>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
-33077589655c        alpine              "/bin/sh"           7 minutes ago       Exited (0) 28 seconds ago                       alpine-node</code></pre>
-
-      <aside class="notes">
-         <ul>
-            <li></li>
-         </ul>
-      </aside>
-   </section>
-   <section>
-      <h3>START command</h3>
-
-      <p>
-         Start one or more containers
-      </p>
-
-      <pre><code>$ docker start [OPTIONS] CONTAINER [CONTAINER...]</code></pre>
-
-      <p>
-         Some options:
-      </p>
-
-      <pre><code>-a, --attach        Attach STDOUT/STDERR and forward signals
--i, --interactive   Attach container's STDIN</code></pre>
-
-      <aside class="notes">
-         <ul>
-            <li></li>
-         </ul>
-      </aside>
-   </section>
-   <section>
       <h3>COMMIT Command</h3>
 
       <p>
@@ -165,7 +119,7 @@ mongo                            latest              a74137af4532        6 weeks
          Some options:
       </p>
 
-      <pre><code>-a, --author=""     Author (e.g., "AshDev <ashdevfr@gmail.com>")
+      <pre><code>-a, --author=""     Author (e.g., "AshDev &lt;ashdevfr@gmail.com>")
 -c, --change=[]     Apply specified Dockerfile instructions while committing the image
 --help              Print usage
 -m, --message=""    Commit message</code></pre>
@@ -196,6 +150,45 @@ mongo                            latest              a74137af4532        6 weeks
 
       <pre><code>$ docker images</code><code style="font-size: small" data-trim>REPOSITORY                       TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 sylvaincau/alpine-node           latest              9852dab7951d        6 seconds ago       24.54 MB</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>LOGIN command</h3>
+
+      <p>
+         Register or log in to a Docker registry server
+      </p>
+
+      <pre><code>$ docker login [OPTIONS] [SERVER]</code></pre>
+
+      <p>
+         Some options:
+      </p>
+
+      <pre><code>-e, --email=""       Email
+--help               Print usage
+-p, --password=""    Password
+-u, --username=""    Username</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>PUSH command</h3>
+
+      <p>
+         Push an image or a repository to the registry
+      </p>
+
+      <pre><code>$ docker push [OPTIONS] NAME[:TAG]</code></pre>
 
       <aside class="notes">
          <ul>

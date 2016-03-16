@@ -102,6 +102,94 @@ Hello world</code></pre>
       </aside>
    </section>
    <section>
+      <h3>PS Command</h3>
+
+      <p>
+         List containers <br><br>
+         <small><code>-a, --all </code>  Show all containers (default shows just running)</small>
+      </p>
+
+      <pre><code>$ docker ps [OPTIONS]</code></pre>
+
+      <p>
+         Example
+      </p>
+
+      <pre><code data-trim>$ docker ps -a</code><code style="font-size: small" data-trim>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
+33077589655c        alpine              "/bin/sh"           7 minutes ago       Exited (0) 28 seconds ago                       alpine-node</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>START command</h3>
+
+      <p>
+         Start one or more containers
+      </p>
+
+      <pre><code>$ docker start [OPTIONS] CONTAINER [CONTAINER...]</code></pre>
+
+      <p>
+         Some options:
+      </p>
+
+      <pre><code>-a, --attach        Attach STDOUT/STDERR and forward signals
+         -i, --interactive   Attach container's STDIN</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>STOP command</h3>
+
+      <p>
+         Stop a container by sending SIGTERM and then SIGKILL after a
+         grace period
+      </p>
+
+      <pre><code>$ docker stop [OPTIONS] CONTAINER [CONTAINER...]</code></pre>
+
+      <p>
+         Some options:
+      </p>
+
+      <pre><code>-t, --time=10      Seconds to wait for stop before killing it</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>KILL command</h3>
+
+      <p>
+         Kill a running container using SIGKILL or a specified signal
+      </p>
+
+      <pre><code>$ docker kill [OPTIONS] CONTAINER [CONTAINER...]</code></pre>
+
+      <p>
+         Some options:
+      </p>
+
+      <pre><code>-s, --signal="KILL"    Signal to send to the container</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
       <h3>Part 1 Exercice 2</h3>
 
       <ul>
@@ -122,7 +210,7 @@ Hello world</code></pre>
    <section>
       <h3>Solution</h3>
 
-      <pre><code>$ docker run -it busybox /bash/sh</code><code>/ #</code></pre>
+      <pre><code>$ docker run -it busybox /bin/sh</code><code>/ #</code></pre>
       <pre><code>/ # echo 'Hello world'</code><code>Hello world</code></pre>
 
       <aside class="notes">

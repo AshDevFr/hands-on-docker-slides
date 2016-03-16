@@ -14,4 +14,25 @@
          </ul>
       </aside>
    </section>
+   <section>
+      <h3>Some commands</h3>
+
+      <p>
+         Clean images
+      </p>
+
+      <pre><code>$ docker images | grep '&lt;none>' | awk '{print $3}' | xargs docker rmi</code></pre>
+
+      <p>
+         Clean containers
+      </p>
+
+      <pre><code>$ docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs docker rm</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
 </section>

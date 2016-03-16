@@ -3,6 +3,7 @@
       <h2>Compose</h2>
 
       <p>
+         Docker compose allows you to automatize build & run.
       </p>
 
       <aside class="notes">
@@ -67,14 +68,14 @@ up        Create and start containers</code></pre>
    build: .
    command: gulp serve
    volumes:
-   - app/:/home/workspace/app
+   - ./app:/home/workspace/app
    links:
    - db
    ports:
    - "9000:9000"
    environment:
-   NODE_ENV: development
-   PORT: 9000
+     NODE_ENV: development
+     PORT: 9000
 db:
    image: mongo:latest
    ports:
@@ -90,7 +91,11 @@ db:
       <h3>Part 6 Exercise 1</h3>
 
       <ul>
-         <li>Use compose to automatize build & run</li>
+         <li>In the Exercise1 folder:</li>
+         <ul>
+            <li>Edit the Dockerfile to use your own alpine-nodejs image</li>
+            <li>Use compose to automatize build & run the node app with mongo</li>
+         </ul>
       </ul>
 
       <aside class="notes">
@@ -114,6 +119,27 @@ db:
    image: mongo:latest
    ports:
    - "27017:27017"</code></pre>
+
+      <aside class="notes">
+         <ul>
+            <li></li>
+         </ul>
+      </aside>
+   </section>
+   <section>
+      <h3>EXEC Command</h3>
+
+      <pre><code>$ docker exec [OPTIONS] CONTAINER COMMAND [ARG...]</code></pre>
+
+      <h4>Some options:</h4>
+
+      <ul>
+         <li>Foreground (-t -i)</li>
+      </ul>
+
+      <p>Exemple</p>
+
+      <pre><code>$ docker exec -it myContainer bash</code></pre>
 
       <aside class="notes">
          <ul>
