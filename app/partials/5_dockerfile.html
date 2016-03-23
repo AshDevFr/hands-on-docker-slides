@@ -38,6 +38,7 @@ WORKDIR /path/to/workdir
 ADD &lt;src>... &lt;dest> # ADD allows &lt;src> to be an URL
                     # Can extract archives
 COPY &lt;src>... &lt;dest>
+RUN echo 'we are running some # of cool things'
 EXPOSE &lt;port>
 VOLUME ["/data"]
 ENTRYPOINT ["executable", "param1", "param2"] # Default /bin/sh -c
